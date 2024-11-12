@@ -11,7 +11,7 @@ const compression = require('compression');
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 
-const dbURI = process.env.MONGODB_URI || 'mongodb://127.0.0.1/DomoMaker';
+const dbURI = process.env.MONGODB_URI || require('../.mongo-connection.js');
 mongoose.connect(dbURI).catch((err) => {
     if (err) {
         console.log('Could not connect to database');

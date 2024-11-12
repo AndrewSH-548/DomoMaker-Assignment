@@ -60,4 +60,4 @@ typings/
 # vscode
 .vscode/
 
-.mongo-connections.js
+.mongo-connection.js
