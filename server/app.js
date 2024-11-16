@@ -29,7 +29,7 @@ const redisClient = redis.createClient({
 });
 
 redisClient.on('error', (err) => console.log('Redis Client Error', err));
-redisClient.connect().then(() => {
+//redisClient.connect().then(() => {
   const app = express();
 
   app.use(helmet());
@@ -57,4 +57,4 @@ redisClient.connect().then(() => {
     if (err) throw err;
     console.log(`Listening on port ${port}`);
   });
-});
+//});
