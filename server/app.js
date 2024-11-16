@@ -9,7 +9,7 @@ const expressHandlebars = require('express-handlebars');
 const helmet = require('helmet');
 const session = require('express-session');
 const redis = require('redis');
-const redisStore = require('connect-redis').default;
+const RedisStore = require('connect-redis').default;
 const compression = require('compression');
 const router = require('./router.js');
 
@@ -28,7 +28,7 @@ const redisClient = redis.createClient({
   url: process.env.REDISCLOUD_URL,
 });
 
-redisClient.on('error', err => console.log('Redis Client Error', err));
+redisClient.on('error', (err) => console.log('Redis Client Error', err));
 redisClient.connect().then(() => {
   const app = express();
 
@@ -40,12 +40,12 @@ redisClient.connect().then(() => {
   app.use(bodyParser.json());
   app.use(session({
     key: 'sessionid',
-    store: new redisStore({
+    store: new RedisStore({
       client: redisClient,
     }),
     secret: 'Domo Arigato',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
   }));
   app.engine('handlebars', expressHandlebars.engine({ defaultLayout: '' }));
   app.set('view engine', 'handlebars');
